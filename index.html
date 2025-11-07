@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prajapati Transport Packers & Movers - Stress-Free Moving</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': {
+                            '50': '#f8fafc',
+                            '100': '#f1f5f9',
+                            '200': '#e2e8f0',
+                            '300': '#cbd5e1',
+                            '400': '#94a3b8',
+                            '500': '#64748b',
+                            '600': '#475569',
+                            '700': '#334155',
+                            '800': '#1e293b', // Primary Color (Dark Slate)
+                            '900': '#0f172a',
+                            '950': '#020617',
+                        },
+                        'accent': {
+                            '50': '#fff7ed',
+                            '100': '#ffedd5',
+                            '200': '#fed7aa',
+                            '300': '#fdbb74',
+                            '400': '#fb923c',
+                            '500': '#f97316', // Accent Color (Orange)
+                            '600': '#ea580c',
+                            '700': '#c2410c',
+                            '800': '#9a3412',
+                            '900': '#7c2d12',
+                            '950': '#431407',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #1e293b; /* Slate-800 */
+            --accent-color: #F97316;  /* Orange-500 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f9fafb; /* Light subtle background */
+        }
+        
+        .text-primary { color: var(--primary-color); }
+        .bg-primary { background-color: var(--primary-color); }
+        .text-accent { color: var(--accent-color); }
+        .bg-accent { background-color: var(--accent-color); }
+        
+        /* CTA Button Hover */
+        .cta-button {
+            transition: all 0.3s ease-in-out;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.7); /* Orange shadow */
+        }
+        
+        /* Hero Image Container */
+        .hero-image-container {
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); 
+            border: 4px solid var(--accent-color);
+        }
+
+        /* Service Card Hover Effect */
+        .service-card:hover {
+            border-bottom: 6px solid var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Typewriter Text Styles */
+        #animated-text-container {
+            min-height: 4.5rem; /* Ensure container height is consistent */
+        }
+        .animated-text-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.8em;
+            background-color: var(--accent-color);
+            margin-left: 0.5rem;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Testimonial Slider */
+        .testimonial-slide {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .testimonial-slide.active {
+            display: block;
+        }
+        
+        /* Initial Animation States (for GSAP) */
+        .reveal-up, .hero-h1, .hero-anim-container, .hero-button, .hero-image {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        .reveal-right {
+             opacity: 0;
+            transform: translateX(30px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-primary-900 text-white py-2">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <div class="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-1">
+                <a href="tel:+917879936140" class="flex items-center hover:text-accent transition duration-300">
+                    <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
+                    Manish: +91-7879936140
+                </a>
+                <a href="mailto:rpitir@gmail.com" class="flex items-center hover:text-accent transition duration-300">
+                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                    rpitir@gmail.com
+                </a>
+            </div>
+            <div class="hidden sm:block">
+                <a href="https://wa.me/7879936140" target="_blank" class="flex items-center hover:text-accent transition duration-300 font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.81L2.06 21.94L7.35 20.57C8.75 21.36 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2ZM17.98 16.39C17.73 16.64 17.41 16.79 16.97 16.89C16.54 16.99 15.94 17.04 15.42 16.86C14.9 16.68 14.19 16.41 13.31 16.04C11.53 15.28 10.23 13.89 10.08 13.71C9.93 13.53 8.71 12.07 8.71 11.02C8.71 9.97 9.42 9.3 9.67 9.05C9.92 8.8 10.24 8.75 10.51 8.75C10.64 8.75 10.78 8.75 10.91 8.75C11.16 8.75 11.39 8.8 11.59 9.25C11.84 9.78 12.3 11.16 12.4 11.34C12.5 11.52 12.55 11.66 12.45 11.84C12.35 12.02 12.25 12.11 12.11 12.25C11.97 12.39 11.83 12.51 11.72 12.6C11.6 12.7 11.48 12.77 11.34 12.91C11.19 13.06 11.04 13.23 11.19 13.53C11.34 13.82 11.81 14.54 12.45 15.14C13.25 15.9 13.92 16.23 14.21 16.37C14.51 16.52 14.73 16.49 14.9 16.32C15.08 16.15 15.42 15.75 15.72 15.38C15.97 15.08 16.27 15.03 16.57 15.13C16.87 15.23 17.89 15.75 18.14 16.01C18.39 16.26 18.23 16.14 17.98 16.39Z"/></svg>
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Header/Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo (2 lines) -->
+            <a href="#home" class="flex flex-col font-extrabold tracking-tight leading-tight">
+                <span class="text-accent text-xl md:text-2xl">PRAJAPATI TRANSPORT</span>
+                <span class="text-primary text-lg md:text-xl">PACKERS & MOVERS</span>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="text-gray-600 hover:text-primary transition duration-300">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-primary transition duration-300">Services</a>
+                <a href="#process" class="text-gray-600 hover:text-primary transition duration-300">Process</a>
+                <a href="#why-us" class="text-gray-600 hover:text-primary transition duration-300">Why Us</a>
+                <a href="#reviews" class="text-gray-600 hover:text-primary transition duration-300">Reviews</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary transition duration-300">Get Quote</a>
+            </nav>
+
+            <!-- CTA Buttons -->
+            <div class="hidden md:flex items-center">
+                <a href="#contact" class="bg-accent text-white font-bold py-2 px-5 rounded-full shadow-lg cta-button">
+                    Quick Quote
+                </a>
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/7879936140" target="_blank" aria-label="Chat on WhatsApp" class="ml-3 flex items-center bg-green-500 text-white font-bold p-3 rounded-full shadow-lg cta-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.81L2.06 21.94L7.35 20.57C8.75 21.36 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2ZM17.98 16.39C17.73 16.64 17.41 16.79 16.97 16.89C16.54 16.99 15.94 17.04 15.42 16.86C14.9 16.68 14.19 16.41 13.31 16.04C11.53 15.28 10.23 13.89 10.08 13.71C9.93 13.53 8.71 12.07 8.71 11.02C8.71 9.97 9.42 9.3 9.67 9.05C9.92 8.8 10.24 8.75 10.51 8.75C10.64 8.75 10.78 8.75 10.91 8.75C11.16 8.75 11.39 8.8 11.59 9.25C11.84 9.78 12.3 11.16 12.4 11.34C12.5 11.52 12.55 11.66 12.45 11.84C12.35 12.02 12.25 12.11 12.11 12.25C11.97 12.39 11.83 12.51 11.72 12.6C11.6 12.7 11.48 12.77 11.34 12.91C11.19 13.06 11.04 13.23 11.19 13.53C11.34 13.82 11.81 14.54 12.45 15.14C13.25 15.9 13.92 16.23 14.21 16.37C14.51 16.52 14.73 16.49 14.9 16.32C15.08 16.15 15.42 15.75 15.72 15.38C15.97 15.08 16.27 15.03 16.57 15.13C16.87 15.23 17.89 15.75 18.14 16.01C18.39 16.26 18.23 16.14 17.98 16.39Z"/></svg>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-primary hover:bg-gray-100 transition">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation Drawer (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 absolute w-full shadow-xl backdrop-blur-sm">
+            <nav class="flex flex-col p-4 space-y-3 text-center">
+                <a href="#home" class="text-white hover:text-accent font-semibold transition duration-300 py-2">Home</a>
+                <a href="#services" class="text-white hover:text-accent font-semibold transition duration-300 py-2">Services</a>
+                <a href="#process" class="text-white hover:text-accent font-semibold transition duration-300 py-2">Process</a>
+                <a href="#why-us" class="text-white hover:text-accent font-semibold transition duration-300 py-2">Why Us</a>
+                <a href="#reviews" class="text-white hover:text-accent font-semibold transition duration-300 py-2">Reviews</a>
+                <a href="#contact" class="bg-accent text-white font-bold py-2 rounded-lg mt-2">Get Free Quote</a>
+                <a href="https://wa.me/7879936140" target="_blank" class="bg-green-500 text-white font-bold py-2 rounded-lg mt-2 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.81L2.06 21.94L7.35 20.57C8.75 21.36 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2ZM17.98 16.39C17.73 16.64 17.41 16.79 16.97 16.89C16.54 16.99 15.94 17.04 15.42 16.86C14.9 16.68 14.19 16.41 13.31 16.04C11.53 15.28 10.23 13.89 10.08 13.71C9.93 13.53 8.71 12.07 8.71 11.02C8.71 9.97 9.42 9.3 9.67 9.05C9.92 8.8 10.24 8.75 10.51 8.75C10.64 8.75 10.78 8.75 10.91 8.75C11.16 8.75 11.39 8.8 11.59 9.25C11.84 9.78 12.3 11.16 12.4 11.34C12.5 11.52 12.55 11.66 12.45 11.84C12.35 12.02 12.25 12.11 12.11 12.25C11.97 12.39 11.83 12.51 11.72 12.6C11.6 12.7 11.48 12.77 11.34 12.91C11.19 13.06 11.04 13.23 11.19 13.53C11.34 13.82 11.81 14.54 12.45 15.14C13.25 15.9 13.92 16.23 14.21 16.37C14.51 16.52 14.73 16.49 14.9 16.32C15.08 16.15 15.42 15.75 15.72 15.38C15.97 15.08 16.27 15.03 16.57 15.13C16.87 15.23 17.89 15.75 18.14 16.01C18.39 16.26 18.23 16.14 17.98 16.39Z"/></svg>
+                    Chat on WhatsApp
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="home" class="pt-20 pb-16 md:pt-32 md:pb-24 bg-primary text-white overflow-hidden">
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <!-- Text Content Column -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight hero-h1">
+                        <span class="text-accent">PRAJAPATI TRANSPORT</span> PACKERS & MOVERS
+                    </h1>
+                    
+                    <!-- Animated Text Container -->
+                    <div id="animated-text-container" class="mb-8 flex items-start justify-center md:justify-start hero-anim-container">
+                        <span class="text-xl sm:text-2xl font-light text-white inline-block border-l-4 border-accent pl-4 pr-1">
+                            We Provide | 
+                        </span>
+                        <span id="animated-text-phrase" class="text-xl sm:text-2xl font-light text-accent inline-block"></span>
+                        <span class="animated-text-cursor"></span>
+                    </div>
+
+                    <a href="#contact" class="inline-flex items-center bg-accent text-white text-lg font-bold py-4 px-8 rounded-full shadow-2xl cta-button hero-button">
+                        <i data-lucide="package-check" class="w-6 h-6 mr-3"></i> Book Your Stress-Free Move
+                    </a>
+                </div>
+                
+                <!-- Image Column -->
+                <div class="flex justify-center hero-image">
+                    <div class="w-full max-w-sm md:max-w-md lg:max-w-lg hero-image-container rounded-3xl overflow-hidden">
+                        <img src="https://www.incharge.org/wp-content/uploads/2020/07/Professional-Mover.jpg"
+                             alt="Professional mover carrying boxes" 
+                             class="w-full h-auto object-cover rounded-3xl transition duration-500 hover:scale-105">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Core Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-gray-800 reveal-up">
+                    Our Professional Moving Services
+                </h2>
+                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto reveal-up">
+                    We handle every aspect of your move, from packing delicate items to securely transporting your goods. All Over India Service.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <!-- Service Card 1: Residential Shifting -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="home" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Home Relocation</h3>
+                        <p class="text-gray-600">Safe and secure moving for your entire household. We treat your belongings like our own.</p>
+                    </div>
+
+                    <!-- Service Card 2: Corporate Relocation -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="building" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Office Shifting</h3>
+                        <p class="text-gray-600">Minimize downtime with our efficient and organized office and corporate relocation services.</p>
+                    </div>
+
+                    <!-- Service Card 3: Packing -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="package" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Packing & Unpacking</h3>
+                        <p class="text-gray-600">Expert team uses high-quality materials to pack everything, from glassware to furniture.</p>
+                    </div>
+                    
+                    <!-- Service Card 4: Loading -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="package-check" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Loading & Unloading</h3>
+                        <p class="text-gray-600">Trained professionals to handle heavy lifting, ensuring no damage to your items or property.</p>
+                    </div>
+                    
+                    <!-- Service Card 5: Storage -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="warehouse" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Storage & Warehousing</h3>
+                        <p class="text-gray-600">Secure, clean, and pest-controlled storage solutions for your short-term or long-term needs.</p>
+                    </div>
+                    
+                    <!-- Service Card 6: Transport -->
+                    <div class="service-card bg-white p-6 md:p-8 rounded-xl shadow-lg transition duration-300 transform hover:shadow-2xl border-t-4 border-primary/20 reveal-up">
+                        <div class="p-4 inline-block bg-primary/10 rounded-xl mb-4">
+                            <i data-lucide="truck" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Transport / Truck Rental</h3>
+                        <p class="text-gray-600">Reliable truck rental (407, 709, 1109, etc.) for All Over India transport.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. How It Works Section (Visual Process) -->
+        <section id="process" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16 text-gray-800 reveal-up">
+                    Our Simple 4-Step Moving Process
+                </h2>
+                <div class="flex flex-col lg:flex-row justify-between items-center relative">
+                    
+                    <!-- Line connecting steps (Desktop only) -->
+                    <div class="hidden lg:block absolute top-10 left-1/4 right-1/4 h-1 bg-accent/50 z-0"></div>
+
+                    <!-- Process Step 1: Quote -->
+                    <div class="w-full lg:w-1/4 p-4 text-center mb-8 lg:mb-0 z-10 reveal-up">
+                        <div class="w-20 h-20 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4 shadow-xl">
+                            <i data-lucide="square-mouse-pointer" class="w-10 h-10"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-1 text-gray-900">1. Get Quote</h4>
+                        <p class="text-sm text-gray-600">Fill the form or call us for a quick, transparent price estimate.</p>
+                    </div>
+                    
+                    <!-- Process Step 2: Packing & Loading -->
+                    <div class="w-full lg:w-1/4 p-4 text-center mb-8 lg:mb-0 z-10 reveal-up">
+                        <div class="w-20 h-20 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4 shadow-xl">
+                            <i data-lucide="package-plus" class="w-10 h-10"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-1 text-gray-900">2. We Pack & Load</h4>
+                        <p class="text-sm text-gray-600">Our professional team arrives to pack and load your belongings with care.</p>
+                    </div>
+
+                    <!-- Process Step 3: Transport -->
+                    <div class="w-full lg:w-1/4 p-4 text-center mb-8 lg:mb-0 z-10 reveal-up">
+                        <div class="w-20 h-20 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4 shadow-xl">
+                            <i data-lucide="truck" class="w-10 h-10"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-1 text-gray-900">3. Safe Transport</h4>
+                        <p class="text-sm text-gray-600">We transport your items in our GPS-tracked, company-owned trucks.</p>
+                    </div>
+
+                    <!-- Process Step 4: Delivery -->
+                    <div class="w-full lg:w-1/4 p-4 text-center z-10 reveal-up">
+                        <div class="w-20 h-20 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4 shadow-xl">
+                            <i data-lucide="map-pin-check" class="w-10 h-10"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-1 text-gray-900">4. Deliver & Unpack</h4>
+                        <p class="text-sm text-gray-600">On-time delivery, careful unloading, and unpacking at your new location.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Why Choose Us Section -->
+        <section id="why-us" class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-800 reveal-up">
+                    The Prajapati Advantage: Our Commitments
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="text-center p-8 rounded-xl bg-slate-50/50 hover:bg-slate-100 transition duration-300 border-b-4 border-accent/70 reveal-up">
+                        <i data-lucide="users" class="w-12 h-12 text-primary mx-auto mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Professional Staff</h4>
+                        <p class="text-sm text-gray-700">Our entire team is background-checked, trained, and uniformed for your security.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="text-center p-8 rounded-xl bg-slate-50/50 hover:bg-slate-100 transition duration-300 border-b-4 border-accent/70 reveal-up">
+                        <i data-lucide="shield-check" class="w-12 h-12 text-primary mx-auto mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Licensed & Insured</h4>
+                        <p class="text-sm text-gray-700">We are a Govt. Licensed and Fully Insured moving company for your peace of mind.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="text-center p-8 rounded-xl bg-slate-50/50 hover:bg-slate-100 transition duration-300 border-b-4 border-accent/70 reveal-up">
+                        <i data-lucide="map" class="w-12 h-12 text-primary mx-auto mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">GPS-Enabled Trucks</h4>
+                        <p class="text-sm text-gray-700">Track your belongings in real-time. We own our fleet (407, 1109, 2515, etc.)</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="text-center p-8 rounded-xl bg-slate-50/50 hover:bg-slate-100 transition duration-300 border-b-4 border-accent/70 reveal-up">
+                        <i data-lucide="tag" class="w-12 h-12 text-primary mx-auto mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Affordable Pricing</h4>
+                        <p class="text-sm text-gray-700">No hidden fees. We provide clear, transparent, and affordable quotes for every move.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5. Contact and Quote Form -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10 text-gray-800 reveal-up">
+                    Ready for a Prajapati Move? Get Your Free Quote!
+                </h2>
+                <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border-t-8 border-primary/80 reveal-up">
+                    <form id="quoteForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="clientName" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name</label>
+                                <input type="text" id="clientName" name="clientName" required
+                                       class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50" placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label for="clientPhone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="clientPhone" name="clientPhone" required
+                                       class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50" placeholder="Enter your 10-digit number">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="pickupLocation" class="block text-sm font-medium text-gray-700 mb-1">Pickup Location (City)</label>
+                            <input type="text" id="pickupLocation" name="pickupLocation" required
+                                   class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50" placeholder="E.g., Bilaspur, C.G.">
+                        </div>
+                        <div>
+                            <label for="deliveryLocation" class="block text-sm font-medium text-gray-700 mb-1">Delivery Location (City)</label>
+                            <input type="text" id="deliveryLocation" name="deliveryLocation" required
+                                   class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50" placeholder="E.g., Pune, MH">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="move-date" class="block text-sm font-medium text-gray-700 mb-1">Move Date</label>
+                                <input type="date" name="move-date" id="move-date" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50 text-gray-500">
+                            </div>
+                            <div>
+                                <label for="serviceType" class="block text-sm font-medium text-gray-700 mb-1">Type of Service</label>
+                                <select id="serviceType" name="serviceType" required
+                                        class="w-full p-3 border-2 border-gray-200 rounded-lg focus:ring-accent focus:border-accent transition focus:ring-2 focus:ring-opacity-50 appearance-none bg-white">
+                                    <option value="">Select Service Type</option>
+                                    <option value="household">Home Relocation</option>
+                                    <option value="office">Office Shifting</option>
+                                    <option value="storage">Storage & Warehousing</option>
+                                    <option value="transport">Transport / Truck Rental</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Dynamic Message Box -->
+                        <div id="messageBox" class="p-3 bg-green-100 text-green-800 rounded-lg hidden font-medium" role="alert"></div>
+
+                        <button type="submit" class="w-full bg-primary text-white text-xl font-bold py-4 rounded-full shadow-lg hover:bg-primary-900 cta-button">
+                            Get Instant Quote
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. Testimonials Section -->
+        <section id="reviews" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 reveal-up">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4">What Our Customers Say</h2>
+                    <p class="text-lg text-gray-600">
+                        We're proud of our track record of happy, stress-free customers.
+                    </p>
+                </div>
+                
+                <div id="testimonial-slider" class="relative bg-gray-50/50 p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100 min-h-[300px] md:min-h-[250px] reveal-up">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide active text-center">
+                        <div class="flex justify-center text-accent mb-4">
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                        </div>
+                        <p class="text-xl md:text-2xl font-medium text-gray-700 italic mb-6">
+                            "Prajapati Transport was amazing! They handled my move from Bilaspur to Delhi without a single issue. The staff was professional and everything arrived on time."
+                        </p>
+                        <p class="text-lg font-semibold text-gray-900">R. K. Sharma</p>
+                        <p class="text-sm text-gray-500">Moved from Bilaspur to Delhi</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide text-center">
+                        <div class="flex justify-center text-accent mb-4">
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star-half" class="w-6 h-6 fill-current"></i>
+                        </div>
+                        <p class="text-xl md:text-2xl font-medium text-gray-700 italic mb-6">
+                            "Very affordable pricing and great service. The team was quick and careful with all my furniture. I highly recommend them for office shifting."
+                        </p>
+                        <p class="text-lg font-semibold text-gray-900">Sunita Patel</p>
+                        <p class="text-sm text-gray-500">Office Relocation in Raipur</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide text-center">
+                        <div class="flex justify-center text-accent mb-4">
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                        </div>
+                        <p class="text-xl md:text-2xl font-medium text-gray-700 italic mb-6">
+                            "Used their storage facility for 3 months. It was clean, secure, and very well-managed. The final delivery to my new home in Assam was seamless."
+                        </p>
+                        <p class="text-lg font-semibold text-gray-900">Ankit Mishra</p>
+                        <p class="text-sm text-gray-500">Storage & Relocation to Assam</p>
+                    </div>
+                    
+                    <!-- Slider Controls -->
+                    <button id="prev-testimonial" class="absolute top-1/2 left-2 md:-left-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition">
+                        <i data-lucide="chevron-left" class="w-6 h-6 text-gray-600"></i>
+                    </button>
+                    <button id="next-testimonial" class="absolute top-1/2 right-2 md:-right-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 reveal-up">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                </div>
+                <div class="space-y-4 reveal-up">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
+                            <span class="text-lg font-semibold text-gray-800">How do I get a quote for my move?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer hidden p-5 pt-0 text-gray-600">
+                            <p>You can get a free, no-obligation quote by filling out the <a href="#contact" class="text-accent font-medium underline">quote form</a> on our website. You can also call us directly at <a href="tel:7879936140" class="text-accent font-medium underline">7879936140</a> to speak with our moving consultant, Manish.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
+                            <span class="text-lg font-semibold text-gray-800">Do you provide packing and unpacking services?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer hidden p-5 pt-0 text-gray-600">
+                            <p>Yes, we provide complete packing and unpacking services. Our trained team uses high-quality packing materials like bubble wrap, sturdy boxes, and packing tape to ensure all your items, especially fragile ones, are safe during transit. We can also help you unpack at your new location.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
+                            <span class="text-lg font-semibold text-gray-800">Are my goods insured during the move?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer hidden p-5 pt-0 text-gray-600">
+                            <p>Yes, we provide transit insurance for all your belongings to give you complete peace of mind. While we take utmost care, this insurance covers any unforeseen accidents or damage during transportation. Please ask our consultant for details about the insurance options.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
+                            <span class="text-lg font-semibold text-gray-800">What areas do you service?</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer hidden p-5 pt-0 text-gray-600">
+                            <p>We provide All Over India Service. We have a strong network and frequently manage moves to and from states like Maharashtra, Gujarat, Delhi, Uttar Pradesh, West Bengal, Assam, and all other major states.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Footer Logo & Copyright -->
+            <div class="text-center md:text-left">
+                <div class="flex flex-col font-extrabold tracking-tight leading-tight text-center md:text-left mb-2">
+                    <span class="text-accent text-2xl">PRAJAPATI TRANSPORT</span>
+                    <span class="text-white text-xl">PACKERS & MOVERS</span>
+                </div>
+                <p class="mb-2 text-gray-200">&copy; 2025 Prajapati Transport Packers & Movers. All rights reserved.</p>
+                <p class="text-sm text-gray-300 mt-3">All Over India Service. Thank You!</p>
+            </div>
+            
+            <!-- Contact Info Section (From business card) -->
+            <div class="flex flex-col space-y-3 items-center md:items-start text-sm">
+                <p class="text-lg font-bold mb-3 text-accent border-b border-accent/50 pb-1">Contact Us Directly</p>
+                
+                <a href="tel:+917879936140" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone" class="w-4 h-4 inline mr-3 text-accent"></i> Manish: +91-7879936140
+                </a>
+                <a href="tel:+917000832741" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone" class="w-4 h-4 inline mr-3 text-accent"></i> Manish: +91-7000832741
+                </a>
+                 <a href="tel:+919074619137" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone" class="w-4 h-4 inline mr-3 text-accent"></i> Manish: +91-9074619137
+                </a>
+                 <a href="tel:+918103603767" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone-call" class="w-4 h-4 inline mr-3 text-accent"></i> Raju: +91-8103603767
+                </a>
+                 <a href="tel:+918839198004" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone-call" class="w-4 h-4 inline mr-3 text-accent"></i> Raju: +91-8839198004
+                </a>
+                 <a href="tel:+917770900016" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="phone-call" class="w-4 h-4 inline mr-3 text-accent"></i> Raju: +91-7770900016
+                </a>
+                
+                <a href="mailto:rpitir@gmail.com" class="hover:text-accent transition duration-200 flex items-center">
+                    <i data-lucide="mail" class="w-4 h-4 inline mr-3 text-accent"></i> rpitir@gmail.com
+                </a>
+                
+                <p class="flex items-start pt-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 inline mr-3 text-accent flex-shrink-0 mt-1"></i>
+                    <span class="text-left">Masturi Road, Near Hanuman Mandir Ke Pass, Lalkhadan, Bilaspur (C.G.) 495004</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize GSAP & ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // GSAP Hero Animations
+            gsap.to(".hero-h1", { duration: 0.8, y: 0, opacity: 1, delay: 0.2, ease: "power2.out" });
+            gsap.to(".hero-anim-container", { duration: 0.8, y: 0, opacity: 1, delay: 0.4, ease: "power2.out" });
+            gsap.to(".hero-button", { duration: 0.8, y: 0, opacity: 1, delay: 0.6, ease: "power2.out" });
+            gsap.to(".hero-image", { duration: 0.8, y: 0, opacity: 1, delay: 0.3, ease: "power2.out" });
+
+            // GSAP General Scroll-Reveal Animations
+            gsap.utils.toArray('.reveal-up').forEach(el => {
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 90%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: "power2.out",
+                });
+            });
+
+            // 2. Typewriter Effect Logic
+            const phrases = [
+                "All Over India Service.",
+                "Stress-Free Moving.",
+                "GPS-Enabled Trucks.",
+                "Licensed & Insured.",
+                "Expert Packing & Unpacking.",
+                "Your Trusted Partner."
+            ];
+            const textElement = document.getElementById('animated-text-phrase');
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            if (textElement) {
+                function typeWriter() {
+                    const currentPhrase = phrases[phraseIndex];
+
+                    if (isDeleting) {
+                        textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                        charIndex++;
+                    }
+
+                    let typingSpeed = 100;
+
+                    if (isDeleting) {
+                        typingSpeed /= 2; // Faster deletion
+                    }
+
+                    if (!isDeleting && charIndex === currentPhrase.length) {
+                        typingSpeed = 2000; // Pause at the end of the phrase
+                        isDeleting = true;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        typingSpeed = 500; // Pause before typing next phrase
+                    }
+
+                    setTimeout(typeWriter, typingSpeed);
+                }
+                typeWriter(); // Start the animation
+            }
+
+            // 3. Form Submission Handling
+            const form = document.getElementById('quoteForm');
+            const messageBox = document.getElementById('messageBox');
+
+            if (form && messageBox) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('clientName').value.trim();
+                    if (!name) {
+                        messageBox.className = 'p-3 bg-red-100 text-red-800 rounded-lg font-medium';
+                        messageBox.textContent = 'Please fill out your full name to proceed with the quote.';
+                        messageBox.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Simulate success
+                    messageBox.className = 'p-3 bg-green-100 text-green-800 rounded-lg font-medium';
+                    messageBox.textContent = 'Success! Your free quote request has been received. A Prajapati Transport expert will contact you shortly.';
+                    messageBox.classList.remove('hidden');
+                    form.reset();
+                    setTimeout(() => messageBox.classList.add('hidden'), 7000);
+                });
+            }
+
+            // 4. Mobile Menu Toggle Logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                // Close menu when a link is clicked
+                document.querySelectorAll('#mobile-menu a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // 5. Testimonial Slider
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.getElementById('prev-testimonial');
+            const nextBtn = document.getElementById('next-testimonial');
+            let currentSlide = 0;
+
+            if (slides.length > 0 && prevBtn && nextBtn) {
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.remove('active');
+                        if (i === index) {
+                            slide.classList.add('active');
+                        }
+                    });
+                }
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    showSlide(currentSlide);
+                });
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    showSlide(currentSlide);
+                });
+                setInterval(() => nextBtn.click(), 5000); // Auto-play
+            }
+            
+            // 6. FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = question.querySelector('i[data-lucide="chevron-down"]');
+                
+                if (question && answer && icon) {
+                    question.addEventListener('click', () => {
+                        answer.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                    });
+                }
+            });
+
+            // 7. Set min date for date picker
+            const dateInput = document.getElementById('move-date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+
+            // 8. Initialize Lucide Icons
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
